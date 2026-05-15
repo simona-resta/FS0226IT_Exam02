@@ -8,19 +8,21 @@
 </head>
 <body>
 
-  <header>
+  <header class="main-header">
     <div class="header-content">
-      <span class="logo">AMAZON</span>
+      <div class="logo-container">
+        <span class="logo">amazon</span>
+      </div>
       
       <div class="search-bar">
-        <input type="search" placeholder="Cerca su Amazon.it">
+        <input type="search" placeholder="Cerca prodotti, categorie, brand...">
         <button type="button" class="btn-search">Cerca</button>
       </div>
 
-      <nav>
+      <nav class="header-nav">
         <a href="javascript:void(0)">Account</a>
         <a href="javascript:void(0)">Ordini</a>
-        <a href="javascript:void(0)" class="carrello">Carrello (0)</a>
+        <a href="javascript:void(0)" class="carrello-box">Carrello (0)</a>
       </nav>
     </div>
   </header>
@@ -28,7 +30,7 @@
   <main>
     <section class="hero">
       <h1>Le offerte di oggi</h1>
-      <p>Trova i migliori prodotti a prezzi imbattibili.</p>
+      <p>Sconti fino al 70% su elettronica, libri, casa e molto altro</p>
     </section>
 
     <section class="categorie">
@@ -56,6 +58,8 @@
         <a href="javascript:void(0)">Scopri di più</a>
       </article>
     </section>
+
+    <h2 style="padding-left: 20px; margin-top: 20px;">I più venduti</h2>
 
     <section id="prodotti" class="griglia">
       </section>
@@ -92,6 +96,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>
