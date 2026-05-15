@@ -137,10 +137,26 @@ if (selectSort) {
   });
 }
 
-const bottoneSvuotaCarrello = document.getElementById("btn-svuota");
+const bottoneSvuotaCarrello = document.getElementById("bottone-svuota-carrello");
 if (bottoneSvuotaCarrello) {
-  bottoneSvuotaCarrello.addEventListener("click", () => {
+  bottoneSvuotaCarrello.onclick = () => {
     localStorage.clear();
     location.reload();
-  });
+  };
 }
+
+const linksCategorie = document.querySelectorAll('.categorie .card');
+
+linksCategorie.forEach((card) => {
+  card.onclick = () => {
+    const nomeCategoria = card.querySelector('h3').innerText;
+    const prodottiFiltrati = filtraPerCategoria(prodotti, nomeCategoria);
+    
+    const titoli = document.querySelectorAll('.titolo-sezione');
+    if (titoli.length > 1) {
+      titoli[1].innerText = `Risultati per: ${nomeCategoria}`;
+    }
+    
+    renderProdotti(prodottiFiltrati);
+  };
+});
