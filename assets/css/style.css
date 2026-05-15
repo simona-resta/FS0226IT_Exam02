@@ -119,13 +119,16 @@ nav a:hover {
     justify-content: center;
     gap: 15px;
     padding: 10px 20px 30px 20px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     background-color: #f3f3f3;
+    width: 100%;
 }
 
 .card {
     background-color: white;
-    width: 240px;
+    flex: 1;
+    min-width: 0;
+    max-width: 300px;
     border: none;
     display: flex;
     flex-direction: column;
@@ -140,8 +143,9 @@ nav a:hover {
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.8rem;
+    font-size: clamp(1rem, 2.5vw, 1.8rem);
     font-weight: bold;
+    width: 100%;
 }
 
 .card:nth-child(1) .card-image-box { background-color: #232f3e; }
@@ -155,16 +159,19 @@ nav a:hover {
 }
 
 .card-content h3 {
-    font-size: 1rem;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
     margin-bottom: 5px;
     font-weight: bold;
     color: #111;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-content a {
     color: #007185;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1.2vw, 0.8rem);
     font-weight: normal;
 }
 
@@ -175,17 +182,20 @@ nav a:hover {
 
 .griglia {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     padding: 20px;
+    width: 100%;
 }
 
 .prodotto-card {
     background-color: white;
     border: 1px solid #ddd;
     padding: 15px;
-    width: 250px;
+    flex: 1;
+    min-width: 0;
+    max-width: 250px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -193,19 +203,21 @@ nav a:hover {
 
 .prodotto-card img {
     width: 100%;
-    height: 180px;
+    height: auto;
+    max-height: 180px;
     object-fit: contain;
 }
 
 .prezzo {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
     margin: 5px 0;
 }
 
 .rating {
     color: #FF9900; 
     margin-bottom: 15px;
+    font-size: clamp(0.7rem, 1.2vw, 1rem);
 }
 
 button {
@@ -216,6 +228,7 @@ button {
     width: 100%;
     cursor: pointer;
     font-weight: 500;
+    font-size: clamp(0.7rem, 1.2vw, 0.9rem);
 }
 
 button:hover {
