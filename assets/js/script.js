@@ -18,12 +18,15 @@ const stelline = (rating) => {
 };
 
 const creaGestoreCarrello = () => {
-  let conteggio = 0;
+  let conteggio = parseInt(localStorage.getItem("carrello_qty")) || 0;
   const elementoCarrello = document.querySelector('.carrello-box');
+  
+  elementoCarrello.innerText = `Carrello (${conteggio})`;
   
   return () => {
     conteggio++;
     elementoCarrello.innerText = `Carrello (${conteggio})`;
+    localStorage.setItem("carrello_qty", conteggio);
   };
 };
 
@@ -59,3 +62,40 @@ const renderProdotti = (lista) => {
 };
 
 renderProdotti(prodotti);
+
+console.log("Array prodotti caricato:", prodotti);
+console.log("Test Prezzo:", formattaPrezzo(89.99));
+console.log("Test Stelline (Rating 3):", stelline(3));
+
+const filtraPerCategoria = (lista, categoria) => {
+  return lista.filter(prodotto => prodotto.categoria === categoria);
+};
+console.log("Filtro Libri:", filtraPerCategoria(prodotti, "Libri"));
+
+const filtraDisponibili = (lista) => {
+  return lista.filter(prodotto => prodotto.disponibile && prodotto.rating >= 3);
+};
+console.log("Prodotti disponibili e validi:", filtraDisponibili(prodotti));
+
+const ordinaProdotti = (criterio) => {
+  let prodottiOrdinati = [...prodotti];
+
+  if (criterio === "price-asc") {
+    prodottiOrdinati.sort((a, b) => a.prezzo - b.prezzo);
+  } else if (criterio === "price-desc") {
+    prodottiOrdinati.sort((a, b) => b.prezzo - a.prezzo);
+  } else if (criterio === "name") {
+    prodottiOrdinati.sort((a, b) => a.nome.localeCompare(b.nome));
+  } else if (criterio === "rating") {
+    prodottiOrdinati.sort((a, b) => b.rating - a.rating);
+  }
+
+  renderProdotti(prodottiOrdinati);
+};
+
+const selectSort = document.getElementById("sort-select");
+if (selectSort) {
+  selectSort.addEventListener("change", (e) => {
+    ordinaProdotti(e.target.value);
+  });
+}

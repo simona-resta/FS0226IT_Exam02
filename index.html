@@ -70,6 +70,18 @@
 
     <h2 class="titolo-sezione">I più venduti</h2>
 
+    <div class="sorting-container" style="padding: 0 20px; margin-bottom: 20px;">
+      <label for="sort-select">Ordina per:</label>
+      <select id="sort-select">
+        <option value="default">In evidenza</option>
+        <optgroup label="Prezzo">
+          <option value="price-asc">Prezzo: dal più basso</option>
+          <option value="price-desc">Prezzo: dal più alto</option>
+        </optgroup>
+        <option value="name">Nome prodotto</option>
+        <option value="rating">Recensioni clienti</option>
+      </select>
+    </div>
     <section id="prodotti" class="griglia"></section>
   </main>
 
