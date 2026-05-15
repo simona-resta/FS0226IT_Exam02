@@ -6,11 +6,7 @@ const prodotti = [
   { nome: "Lampada LED", categoria: "Casa", prezzo: 29.50, rating: 3, immagine: "Lampada", disponibile: false },
   { nome: "Smartwatch GPS", categoria: "Elettronica", prezzo: 119.00, rating: 4, immagine: "Smartwatch", disponibile: true },
   { nome: "Mouse ergonomico", categoria: "Elettronica", prezzo: 24.90, rating: 4, immagine: "Mouse", disponibile: true },
-  { nome: "Caffettiera moka", categoria: "Casa", prezzo: 22.00, rating: 5, immagine: "Caffettiera", disponibile: true },
-  { nome: "Maglietta in cotone", categoria: "Abbigliamento", prezzo: 15.00, rating: 3, immagine: "Maglietta", disponibile: true },
-  { nome: "Manuale JS", categoria: "Libri", prezzo: 35.00, rating: 5, immagine: "Libro Tech", disponibile: true },
-  { nome: "Borraccia termica", categoria: "Casa", prezzo: 18.50, rating: 4, immagine: "Borraccia", disponibile: false },
-  { nome: "Tastiera Meccanica", categoria: "Elettronica", prezzo: 75.00, rating: 5, immagine: "Tastiera", disponibile: true }
+  { nome: "Caffettiera moka", categoria: "Casa", prezzo: 22.00, rating: 5, immagine: "Caffettiera", disponibile: true }
 ];
 
 const formattaPrezzo = (prezzo) => {
