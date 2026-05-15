@@ -13,8 +13,6 @@ const prodotti = [
   { nome: "Tastiera Meccanica", categoria: "Elettronica", prezzo: 75.00, rating: 5, immagine: "Tastiera", disponibile: true }
 ];
 
-console.log("Array prodotti caricato:", prodotti);
-
 const formattaPrezzo = (prezzo) => {
   return `€ ${prezzo.toFixed(2).replace('.', ',')}`;
 };
@@ -23,15 +21,45 @@ const stelline = (rating) => {
   return "★".repeat(rating) + "☆".repeat(5 - rating);
 };
 
-const filtraPerCategoria = (lista, categoria) => {
-  return lista.filter(prodotto => prodotto.categoria === categoria);
+const creaGestoreCarrello = () => {
+  let conteggio = 0;
+  const elementoCarrello = document.querySelector('.carrello-box');
+  
+  return () => {
+    conteggio++;
+    elementoCarrello.innerText = `Carrello (${conteggio})`;
+  };
 };
 
-const filtraDisponibiliERating = (lista) => {
-  return lista.filter(prodotto => prodotto.disponibile && prodotto.rating >= 3);
+const aggiungiAlCarrello = creaGestoreCarrello();
+
+const renderProdotti = (lista) => {
+  const container = document.getElementById("prodotti");
+  container.innerHTML = "";
+
+  lista.forEach((prodotto) => {
+    const card = document.createElement("article");
+    card.className = "prodotto-card";
+
+    card.innerHTML = `
+      <div class="img-placeholder">${prodotto.immagine}</div>
+      <div class="prodotto-content">
+        <h3>${prodotto.nome}</h3>
+        <div class="rating">${stelline(prodotto.rating)} <span>(${prodotto.rating}.0)</span></div>
+        <p class="prezzo">${formattaPrezzo(prodotto.prezzo)}</p>
+        <button type="button" class="btn-add" ${!prodotto.disponibile ? "disabled" : ""}>
+          ${prodotto.disponibile ? "Aggiungi al carrello" : "Esaurito"}
+        </button>
+      </div>
+    `;
+
+    const btn = card.querySelector('.btn-add');
+    if (prodotto.disponibile) {
+      btn.addEventListener('click', aggiungiAlCarrello);
+    }
+
+    container.appendChild(card);
+  });
 };
 
-console.log("Test Prezzo:", formattaPrezzo(89.99));
-console.log("Test Stelline (Rating 3):", stelline(3));
-console.log("Solo Libri:", filtraPerCategoria(prodotti, "Libri"));
-console.log("Disponibili con Rating >= 3:", filtraDisponibiliERating(prodotti));
+renderProdotti(prodotti);
