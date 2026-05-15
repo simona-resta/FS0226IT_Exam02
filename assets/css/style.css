@@ -93,7 +93,6 @@ nav a {
     border: 1px solid #3a4553; 
 } 
 
-/* --- HERO --- */
 .hero { 
     background-color: #37475a;  
     color: white; 
@@ -214,9 +213,15 @@ nav a {
     color: #ffa41c; 
     font-size: 0.85rem; 
     margin-bottom: 5px; 
-} 
+}
+
+.rating span {
+    color: #007185;
+    margin-left: 5px;
+}
 
 .prezzo { 
+    color: #B12704;
     font-size: 1.3rem; 
     font-weight: bold; 
     margin-bottom: 12px; 
