@@ -17,16 +17,53 @@ const stelline = (rating) => {
   return "★".repeat(rating) + "☆".repeat(5 - rating);
 };
 
+const aggiornaUIREpilogo = () => {
+  const carrello = JSON.parse(localStorage.getItem("lista_carrello")) || [];
+  const listaUL = document.getElementById("prodotti-carrello");
+  const msgVuoto = document.getElementById("lista-carrello-vuoto");
+  const boxTotale = document.getElementById("totale-box");
+  const spanTotale = document.getElementById("prezzo-totale");
+
+  if (!listaUL) return;
+
+  listaUL.innerHTML = "";
+  let totaleEuro = 0;
+
+  if (carrello.length > 0) {
+    msgVuoto.style.display = "none";
+    boxTotale.style.display = "block";
+    carrello.forEach(item => {
+      totaleEuro += item.prezzo;
+      const li = document.createElement("li");
+      li.style.padding = "10px 0";
+      li.style.borderBottom = "1px solid #eee";
+      li.innerText = `${item.nome} - ${formattaPrezzo(item.prezzo)}`;
+      listaUL.appendChild(li);
+    });
+    spanTotale.innerText = formattaPrezzo(totaleEuro);
+  } else {
+    msgVuoto.style.display = "block";
+    boxTotale.style.display = "none";
+  }
+};
+
 const creaGestoreCarrello = () => {
   let conteggio = parseInt(localStorage.getItem("carrello_qty")) || 0;
   const elementoCarrello = document.querySelector('.carrello-box');
   
   elementoCarrello.innerText = `Carrello (${conteggio})`;
+  aggiornaUIREpilogo();
   
-  return () => {
+  return (prodotto) => {
     conteggio++;
     elementoCarrello.innerText = `Carrello (${conteggio})`;
     localStorage.setItem("carrello_qty", conteggio);
+
+    const carrello = JSON.parse(localStorage.getItem("lista_carrello")) || [];
+    carrello.push(prodotto);
+    localStorage.setItem("lista_carrello", JSON.stringify(carrello));
+    
+    aggiornaUIREpilogo();
   };
 };
 
@@ -54,7 +91,7 @@ const renderProdotti = (lista) => {
 
     const btn = card.querySelector('.btn-add');
     if (prodotto.disponibile) {
-      btn.addEventListener('click', aggiungiAlCarrello);
+      btn.addEventListener('click', () => aggiungiAlCarrello(prodotto));
     }
 
     container.appendChild(card);
@@ -97,5 +134,13 @@ const selectSort = document.getElementById("sort-select");
 if (selectSort) {
   selectSort.addEventListener("change", (e) => {
     ordinaProdotti(e.target.value);
+  });
+}
+
+const bottoneSvuotaCarrello = document.getElementById("btn-svuota");
+if (bottoneSvuotaCarrello) {
+  bottoneSvuotaCarrello.addEventListener("click", () => {
+    localStorage.clear();
+    location.reload();
   });
 }

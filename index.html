@@ -82,7 +82,25 @@
         <option value="rating">Recensioni clienti</option>
       </select>
     </div>
+
     <section id="prodotti" class="griglia"></section>
+
+    <section id="sezione-carrello" style="margin: 40px 20px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+      <h2 style="margin-bottom: 15px;">Il tuo carrello</h2>
+      
+      <div id="lista-carrello-vuoto">Il carrello è attualmente vuoto.</div>
+      
+      <ul id="prodotti-carrello" style="list-style: none; padding: 0;">
+        </ul>
+
+      <div id="totale-box" style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #eee; display: none;">
+        <p style="font-size: 1.2rem;"><strong>Totale: <span id="prezzo-totale">€ 0,00</span></strong></p>
+        <button id="btn-svuota" style="background-color: #cc0c39; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+          Svuota carrello
+        </button>
+      </div>
+    </section>
+
   </main>
 
   <footer>
