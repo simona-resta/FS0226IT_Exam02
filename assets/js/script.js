@@ -35,8 +35,6 @@ const aggiornaUIREpilogo = () => {
     carrello.forEach(item => {
       totaleEuro += item.prezzo;
       const li = document.createElement("li");
-      li.style.padding = "10px 0";
-      li.style.borderBottom = "1px solid #eee";
       li.innerText = `${item.nome} - ${formattaPrezzo(item.prezzo)}`;
       listaUL.appendChild(li);
     });

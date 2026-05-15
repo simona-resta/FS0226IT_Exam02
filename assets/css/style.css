@@ -267,3 +267,15 @@ footer {
 } 
 
 .colonna a:hover { text-decoration: underline; }
+
+#bottone-svuota-carrello {
+    width: auto;
+    border-radius: 4px;
+    padding: 5px 15px;
+    margin-top: 10px;
+}
+
+#prodotti-carrello li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
