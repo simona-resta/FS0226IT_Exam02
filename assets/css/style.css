@@ -5,10 +5,11 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: #f3f3f3;
     color: #111;
     line-height: 1.5;
+    overflow-x: hidden;
 }
 
 header {
@@ -24,23 +25,26 @@ header {
 .header-content {
     display: flex;
     align-items: center;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     max-width: 100%; 
-    margin: 0 auto;
+    margin: 0;
+    gap: 20px;
 }
 
 .logo {
     color: #FEBD69; 
     font-size: 1.8rem; 
     font-weight: bold;
-    margin-right: 30px;
+    flex-shrink: 0;
+    margin-top: -6px;
+    display: flex;
+    align-items: center;
 }
 
 .search-bar {
     display: flex;
     flex-grow: 1; 
     max-width: 700px; 
-    margin-right: 40px; 
     height: 40px;
 }
 
@@ -50,41 +54,34 @@ header {
     border: none;
     border-radius: 4px 0 0 4px;
     font-size: 0.9rem;
-    height: 100%;
 }
 
 .btn-search {
     background-color: #FEBD69; 
     border: none;
-    width: 65px;
-    height: 100%;
+    width: 60px;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 0.85rem;
-    flex: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    flex-shrink: 0;
+    font-weight: bold;
 }
 
 nav {
     display: flex;
     align-items: center;
-    gap: 25px; 
+    gap: 20px;
+    flex-shrink: 0;
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: bold; 
+    font-size: 0.85rem;
+    font-weight: bold;
     white-space: nowrap;
-}
-
-nav a:hover {
-    text-decoration: underline;
 }
 
 .carrello-box {
@@ -95,55 +92,65 @@ nav a:hover {
 }
 
 .hero {
-    background-color: #303F51; 
+    background-color: #37475a; 
     color: white;
     text-align: center;
     padding: 60px 20px;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 10px;
 }
 
+.hero p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
 .titolo-sezione {
-    padding: 25px 20px 5px 20px;
+    padding: 25px 20px 10px 20px;
     font-size: 1.5rem;
     font-weight: bold;
     color: #111;
-    text-align: left;
+    text-align: left; 
+    width: 100%;
 }
 
 .categorie {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 10px 20px 30px 20px;
+    justify-content: center; 
+    gap: 20px;
+    padding: 10px 20px 40px 20px;
     flex-wrap: nowrap;
-    background-color: #f3f3f3;
     width: 100%;
 }
 
 .card {
     background-color: white;
-    flex: 1;
+    flex: 1 1 0;
     min-width: 0;
-    max-width: 300px;
-    border: none;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    border-radius: 8px;
+    border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .card-image-box {
-    height: 160px;
+    height: 180px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: clamp(1rem, 2.5vw, 1.8rem);
+    font-size: 2.5rem;
     font-weight: bold;
     width: 100%;
 }
@@ -154,37 +161,22 @@ nav a:hover {
 .card:nth-child(4) .card-image-box { background-color: #00765b; }
 
 .card-content {
-    padding: 12px;
-    background-color: white;
+    padding: 15px;
 }
 
 .card-content h3 {
-    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    font-size: 1.1rem;
     margin-bottom: 5px;
-    font-weight: bold;
-    color: #111;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.card-content a {
-    color: #007185;
-    text-decoration: none;
-    font-size: clamp(0.7rem, 1.2vw, 0.8rem);
-    font-weight: normal;
-}
-
-.card-content a:hover {
-    color: #c45500;
-    text-decoration: underline;
-}
-
 .griglia {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: center;
-    gap: 15px;
+    justify-content: center; 
+    gap: 20px;
     padding: 20px;
     width: 100%;
 }
@@ -192,62 +184,63 @@ nav a:hover {
 .prodotto-card {
     background-color: white;
     border: 1px solid #ddd;
-    padding: 15px;
-    flex: 1;
+    padding: 20px;
+    flex: 1 1 0;
     min-width: 0;
-    max-width: 250px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    border-radius: 4px;
+    transition: box-shadow 0.2s ease-in-out;
+    cursor: pointer;
 }
 
-.prodotto-card img {
-    width: 100%;
-    height: auto;
-    max-height: 180px;
-    object-fit: contain;
+.prodotto-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.img-placeholder {
+    background-color: #eee;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.prodotto-card h3 {
+    font-size: 0.9rem;
+    height: 2.8em;
+    overflow: hidden;
+    margin-bottom: 8px;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .prezzo {
+    font-size: 1.3rem;
     font-weight: bold;
-    font-size: clamp(1rem, 1.8vw, 1.2rem);
-    margin: 5px 0;
-}
-
-.rating {
-    color: #FF9900; 
-    margin-bottom: 15px;
-    font-size: clamp(0.7rem, 1.2vw, 1rem);
+    margin-bottom: 12px;
 }
 
 button {
-    background-color: #FFD814; 
+    background-color: #FFD814;
     border: 1px solid #FCD200;
-    border-radius: 8px;
+    border-radius: 20px;
     padding: 10px;
-    width: 100%;
     cursor: pointer;
     font-weight: 500;
-    font-size: clamp(0.7rem, 1.2vw, 0.9rem);
-}
-
-button:hover {
-    background-color: #F7CA00; 
-}
-
-button:disabled {
-    background-color: #e7e9ec;
-    border-color: #adb1b8;
-    color: #888;
-    cursor: not-allowed;
-    opacity: 0.7;
+    width: 100%;
 }
 
 footer {
     background-color: #232F3E; 
     color: white;
-    padding: 40px 20px;
-    margin-top: 40px;
+    padding: 60px 20px;
+    margin-top: 50px;
 }
 
 .footer-columns {
@@ -255,11 +248,13 @@ footer {
     justify-content: space-around;
     max-width: 1000px;
     margin: 0 auto;
+    gap: 20px;
 }
 
 .colonna h4 {
-    margin-bottom: 15px;
-    color: #EEEEEE; 
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #fff;
 }
 
 .colonna ul {
@@ -267,7 +262,7 @@ footer {
 }
 
 .colonna ul li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .colonna a {
